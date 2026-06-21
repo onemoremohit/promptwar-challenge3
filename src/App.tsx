@@ -88,57 +88,64 @@ export const App: React.FC = () => {
           </div>
 
           <nav className="nav-links" role="navigation" aria-label="Main Navigation">
-            <button
-              className={`nav-tab ${activeTab === 'dashboard' ? 'active' : ''}`}
-              onClick={() => handleNavigate('dashboard')}
-              aria-selected={activeTab === 'dashboard'}
-              role="tab"
-              aria-label="Dashboard Tab"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="14" rx="1"/></svg>
-              <span>Dashboard</span>
-            </button>
-            <button
-              className={`nav-tab ${activeTab === 'calculator' ? 'active' : ''}`}
-              onClick={() => handleNavigate('calculator')}
-              aria-selected={activeTab === 'calculator'}
-              role="tab"
-              aria-label="Calculator Tab"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect width="14" height="18" x="5" y="3" rx="2"/><path d="M9 7h6"/><path d="M9 11h6"/><path d="M9 15h2"/><path d="M15 15h.01"/></svg>
-              <span>Calculator</span>
-            </button>
-            <button
-              className={`nav-tab ${activeTab === 'tracker' ? 'active' : ''}`}
-              onClick={() => handleNavigate('tracker')}
-              aria-selected={activeTab === 'tracker'}
-              role="tab"
-              aria-label="Eco-Tracker Tab"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
-              <span>Eco-Tracker</span>
-            </button>
-            <button
-              className={`nav-tab ${activeTab === 'assistant' ? 'active' : ''}`}
-              onClick={() => handleNavigate('assistant')}
-              aria-selected={activeTab === 'assistant'}
-              role="tab"
-              aria-label="Eco-Bot Assistant Tab"
-            >
-              {hasNewAdvice && <div className="assistant-tab-indicator" style={{ display: 'block' }}></div>}
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              <span>Eco-Bot</span>
-            </button>
-            <button
-              className={`nav-tab ${activeTab === 'education' ? 'active' : ''}`}
-              onClick={() => handleNavigate('education')}
-              aria-selected={activeTab === 'education'}
-              role="tab"
-              aria-label="Eco-Quiz Tab"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
-              <span>Eco-Quiz</span>
-            </button>
+            <div role="tablist" aria-label="Application sections" style={{ display: 'contents' }}>
+              <button
+                id="tab-dashboard"
+                className={`nav-tab ${activeTab === 'dashboard' ? 'active' : ''}`}
+                onClick={() => handleNavigate('dashboard')}
+                aria-selected={activeTab === 'dashboard'}
+                role="tab"
+                aria-controls="panel-dashboard"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="14" rx="1"/></svg>
+                <span>Dashboard</span>
+              </button>
+              <button
+                id="tab-calculator"
+                className={`nav-tab ${activeTab === 'calculator' ? 'active' : ''}`}
+                onClick={() => handleNavigate('calculator')}
+                aria-selected={activeTab === 'calculator'}
+                role="tab"
+                aria-controls="panel-calculator"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect width="14" height="18" x="5" y="3" rx="2"/><path d="M9 7h6"/><path d="M9 11h6"/><path d="M9 15h2"/><path d="M15 15h.01"/></svg>
+                <span>Calculator</span>
+              </button>
+              <button
+                id="tab-tracker"
+                className={`nav-tab ${activeTab === 'tracker' ? 'active' : ''}`}
+                onClick={() => handleNavigate('tracker')}
+                aria-selected={activeTab === 'tracker'}
+                role="tab"
+                aria-controls="panel-tracker"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+                <span>Eco-Tracker</span>
+              </button>
+              <button
+                id="tab-assistant"
+                className={`nav-tab ${activeTab === 'assistant' ? 'active' : ''}`}
+                onClick={() => handleNavigate('assistant')}
+                aria-selected={activeTab === 'assistant'}
+                role="tab"
+                aria-controls="panel-assistant"
+              >
+                {hasNewAdvice && <div className="assistant-tab-indicator" aria-hidden="true" style={{ display: 'block' }}></div>}
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>Eco-Bot{hasNewAdvice ? ' (New advice ready)' : ''}</span>
+              </button>
+              <button
+                id="tab-education"
+                className={`nav-tab ${activeTab === 'education' ? 'active' : ''}`}
+                onClick={() => handleNavigate('education')}
+                aria-selected={activeTab === 'education'}
+                role="tab"
+                aria-controls="panel-education"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+                <span>Eco-Quiz</span>
+              </button>
+            </div>
           </nav>
 
           {/* Scoreboard Profile Summary */}
@@ -159,49 +166,59 @@ export const App: React.FC = () => {
         </header>
 
         {/* Main Content Panels */}
-        <main className="main-content">
+        <main id="main-content" className="main-content" tabIndex={-1}>
           {activeTab === 'dashboard' && (
-            <InsightsDashboard
-              userData={userData}
-              xp={xp}
-              badge={badge}
-              actionsLoggedCount={actionsLoggedCount}
-              dailySavings={dailySavings}
-              quizScore={quizScore}
-              quizTotal={quizTotal}
-              onNavigate={handleNavigate}
-            />
+            <div id="panel-dashboard" role="tabpanel" aria-labelledby="tab-dashboard">
+              <InsightsDashboard
+                userData={userData}
+                xp={xp}
+                badge={badge}
+                actionsLoggedCount={actionsLoggedCount}
+                dailySavings={dailySavings}
+                quizScore={quizScore}
+                quizTotal={quizTotal}
+                onNavigate={handleNavigate}
+              />
+            </div>
           )}
 
           {activeTab === 'calculator' && (
-            <CarbonCalculator
-              userData={userData}
-              userName={userName}
-              onUpdateUserData={handleUpdateUserData}
-              onUpdateUserName={setUserName}
-              onNavigate={handleNavigate}
-            />
+            <div id="panel-calculator" role="tabpanel" aria-labelledby="tab-calculator">
+              <CarbonCalculator
+                userData={userData}
+                userName={userName}
+                onUpdateUserData={handleUpdateUserData}
+                onUpdateUserName={setUserName}
+                onNavigate={handleNavigate}
+              />
+            </div>
           )}
 
           {activeTab === 'tracker' && (
-            <EcoTracker
-              onAwardXp={handleAwardXp}
-              onUpdateSavings={handleUpdateSavings}
-            />
+            <div id="panel-tracker" role="tabpanel" aria-labelledby="tab-tracker">
+              <EcoTracker
+                onAwardXp={handleAwardXp}
+                onUpdateSavings={handleUpdateSavings}
+              />
+            </div>
           )}
 
           {activeTab === 'assistant' && (
-            <ChatBot
-              userData={userData}
-              userName={userName}
-            />
+            <div id="panel-assistant" role="tabpanel" aria-labelledby="tab-assistant">
+              <ChatBot
+                userData={userData}
+                userName={userName}
+              />
+            </div>
           )}
 
           {activeTab === 'education' && (
-            <EcoQuiz
-              onUpdateQuizMetric={handleUpdateQuizMetric}
-              onAwardXp={handleAwardXp}
-            />
+            <div id="panel-education" role="tabpanel" aria-labelledby="tab-education">
+              <EcoQuiz
+                onUpdateQuizMetric={handleUpdateQuizMetric}
+                onAwardXp={handleAwardXp}
+              />
+            </div>
           )}
         </main>
 

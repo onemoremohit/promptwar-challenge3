@@ -4,15 +4,47 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/svg+xml" href="/assets/ecosphere_logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EcoSphere | Carbon Footprint Tracker & Smart Assistant</title>
-  <meta name="description" content="EcoSphere is a premium, interactive platform designed to help you track, analyze, and minimize your carbon footprint.">
-  
+  <title>EcoSphere | Carbon Footprint Tracker &amp; Smart Assistant</title>
+  <meta name="description" content="EcoSphere is a premium, interactive platform designed to help you track, analyze, and minimize your carbon footprint using real-time insights, gamification, and an AI-powered eco-bot.">
+  <meta name="theme-color" content="#0B0F19">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="EcoSphere | Carbon Intelligence Hub">
+  <meta property="og:description" content="Track, analyze, and minimize your personal carbon footprint with EcoSphere's smart calculator, daily habit tracker, and Eco-Bot advisor.">
+  <meta property="og:type" content="website">
+
   <!-- Font Integrations -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Skip-to-content link for keyboard/screen reader accessibility */
+    .skip-to-content {
+      position: absolute;
+      top: -100%;
+      left: 8px;
+      z-index: 9999;
+      background: #059669;
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 0 0 8px 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.2s ease;
+    }
+    .skip-to-content:focus {
+      top: 0;
+      outline: 3px solid #ffffff;
+      outline-offset: 2px;
+    }
+  </style>
 </head>
 <body>
+  <!-- Accessibility: skip navigation link for keyboard users -->
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

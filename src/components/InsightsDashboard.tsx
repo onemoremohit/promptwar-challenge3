@@ -252,7 +252,7 @@ export const InsightsDashboard: React.FC<DashboardProps> = ({
           </div>
         </div>
 
-        <div className="assistant-teaser" onClick={() => onNavigate('assistant')} style={{ padding: '16px' }} role="button" aria-label="Ask Eco-Bot recommendations">
+        <div className="assistant-teaser" onClick={() => onNavigate('assistant')} style={{ padding: '16px' }} role="button" aria-label="Ask Eco-Bot recommendations" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onNavigate('assistant'); } }}>
           <div className="teaser-avatar" style={{ background: 'var(--emerald-dim)', color: 'var(--emerald)', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pulsing-icon" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
           </div>
@@ -265,6 +265,41 @@ export const InsightsDashboard: React.FC<DashboardProps> = ({
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ color: 'var(--text-muted)' }}><path d="m9 18 6-6-6-6"/></svg>
         </div>
       </div>
+
+      {/* World Comparison Benchmark Widget */}
+      <div className="col-span-12 glass-card world-compare-card" role="region" aria-label="Global Carbon Benchmark Comparison">
+        <div className="card-header" style={{ marginBottom: '20px' }}>
+          <h3>🌍 How You Compare to the World</h3>
+          <p className="subtitle text-muted">Your annual footprint vs. global benchmarks (tonnes CO2e/year)</p>
+        </div>
+        <div className="benchmark-grid">
+          {[
+            { label: 'Your Footprint', value: sectors.total, color: footprintAnalysis.tier === 'Carbon Guardian' ? 'var(--emerald)' : footprintAnalysis.tier === 'Climate Learner' ? 'var(--coral)' : 'var(--amber)', ariaLabel: `Your footprint: ${sectors.total} tonnes CO2e per year` },
+            { label: 'World Average', value: 4.7, color: '#60A5FA', ariaLabel: 'World average: 4.7 tonnes CO2e per year' },
+            { label: 'Paris Target 2030', value: 2.0, color: '#34D399', ariaLabel: 'Paris climate target: 2.0 tonnes CO2e per year' },
+            { label: 'India Average', value: 1.9, color: '#FBBF24', ariaLabel: 'India national average: 1.9 tonnes CO2e per year' }
+          ].map((bench) => {
+            const maxRef = Math.max(sectors.total, 4.7, 2.0, 1.9, 0.1);
+            const pct = Math.min((bench.value / maxRef) * 100, 100);
+            return (
+              <div key={bench.label} className="benchmark-row" aria-label={bench.ariaLabel}>
+                <div className="benchmark-label-row">
+                  <span className="benchmark-name">{bench.label}</span>
+                  <span className="benchmark-value" style={{ color: bench.color }}>{bench.value.toFixed(1)}t</span>
+                </div>
+                <div className="benchmark-bar-track" role="progressbar" aria-valuenow={Math.round(pct)} aria-valuemin={0} aria-valuemax={100} aria-label={`${bench.label} bar at ${pct.toFixed(0)}%`}>
+                  <div className="benchmark-bar-fill" style={{ width: `${pct}%`, background: bench.color }}></div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <p className="benchmark-footnote" aria-label="Data source attribution">
+          Source: IEA World Energy Outlook 2023 · IPCC AR6 · Paris Agreement (1.5°C pathway)
+        </p>
+      </div>
+
     </div>
   );
 };
+

@@ -1476,13 +1476,94 @@ body {
 button:focus-visible, 
 input:focus-visible, 
 select:focus-visible, 
-.flip-card:focus-visible {
+a:focus-visible,
+.flip-card:focus-visible,
+div[role="button"]:focus-visible {
   outline: 2px solid var(--emerald);
   outline-offset: 4px;
+  border-radius: 4px;
 }
 
 /* Typing indicator bounce */
 @keyframes bounceTyping {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
+}
+
+/* -----------------------------------------
+   13. World Comparison Benchmark Widget
+   ----------------------------------------- */
+:root {
+  --amber: #F59E0B;
+  --amber-dim: rgba(245, 158, 11, 0.15);
+}
+
+.world-compare-card {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(59, 130, 246, 0.03) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.world-compare-card .card-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.benchmark-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 32px;
+  margin-bottom: 16px;
+}
+
+.benchmark-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.benchmark-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.benchmark-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.benchmark-value {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.benchmark-bar-track {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.benchmark-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.7s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+.benchmark-footnote {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-card);
+  padding-top: 12px;
+  margin-top: 4px;
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .benchmark-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }

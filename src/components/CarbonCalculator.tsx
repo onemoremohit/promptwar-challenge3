@@ -4,11 +4,20 @@ import { evaluateCarbonFootprint } from '../utils/carbonEngine';
 import type { UserContext } from '../utils/carbonEngine';
 import { sanitizeNumber, sanitizeString } from '../utils/sanitizer';
 
+/**
+ * Props for the CarbonCalculator multi-step wizard component.
+ * Guides users through a structured assessment of their lifestyle carbon inputs.
+ */
 interface CalculatorProps {
+  /** Current user lifestyle context for pre-populating wizard fields */
   userData: UserContext;
+  /** The user's display name for personalised greeting */
   userName: string;
+  /** Callback fired when the user completes the wizard with updated lifestyle data */
   onUpdateUserData: (data: UserContext) => void;
+  /** Callback to update the user's display name */
   onUpdateUserName: (name: string) => void;
+  /** Navigation callback to switch to a different application tab */
   onNavigate: (tabId: string) => void;
 }
 
@@ -226,8 +235,9 @@ export const CarbonCalculator: React.FC<CalculatorProps> = ({
                 onClick={() => setDietType('meatHeavyDay')}
                 role="button"
                 aria-label="Select Meat Heavy Diet"
+                aria-pressed={dietType === 'meatHeavyDay'}
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter') setDietType('meatHeavyDay'); }}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setDietType('meatHeavyDay'); } }}
               >
                 <div className="diet-icon-holder">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
@@ -241,8 +251,9 @@ export const CarbonCalculator: React.FC<CalculatorProps> = ({
                 onClick={() => setDietType('plantBasedDay')}
                 role="button"
                 aria-label="Select Plant-Based Diet"
+                aria-pressed={dietType === 'plantBasedDay'}
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter') setDietType('plantBasedDay'); }}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setDietType('plantBasedDay'); } }}
               >
                 <div className="diet-icon-holder">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.8A7 7 0 0 1 11 20z"/></svg>
